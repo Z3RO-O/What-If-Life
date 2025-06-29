@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Generated files
+*.generated.*
+*.auto.*
+
+# Configuration files
+*.config.js
+*.config.ts
+vite.config.ts
+tailwind.config.js
+postcss.config.js
+
+# Supabase
+supabase/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Logs
+*.log
