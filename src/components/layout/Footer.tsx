@@ -87,10 +87,10 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl lg:text-2xl font-accent text-white group-hover:scale-105 transition-transform">
-                    PATHS
+                    What If?
                   </span>
                   <span className="text-sm font-accent-light text-gray-400 -mt-1 tracking-wider">
-                    NOT TAKEN
+                    Life
                   </span>
                 </div>
               </Link>
@@ -234,10 +234,10 @@ export default function Footer() {
                 <div className="flex items-center space-x-4 text-gray-400 group">
                   <Mail className="h-5 w-5 text-blue-400 group-hover:animate-bounce" />
                   <a
-                    href="mailto:hello@pathsnottaken.com"
+                    href="mailto:hello@whatiflife.com"
                     className="hover:text-blue-400 transition-colors font-accent-light text-sm lg:text-base"
                   >
-                    hello@pathsnottaken.com
+                    hello@whatiflife.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-4 text-gray-400 group">
@@ -275,7 +275,7 @@ export default function Footer() {
         <div className="py-6 lg:py-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6 text-gray-400 text-sm lg:text-base">
-              <span className="font-accent-light">© {currentYear} Paths Not Taken, Inc.</span>
+              <span className="font-accent-light">© {currentYear} What If Life, Inc.</span>
               <span className="hidden md:inline">•</span>
               <span className="flex items-center space-x-2 font-accent-light">
                 <span>Made with</span>

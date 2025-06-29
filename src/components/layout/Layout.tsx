@@ -60,10 +60,10 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <div className="flex flex-col">
                 <span className="text-lg lg:text-xl font-accent text-white group-hover:scale-105 transition-transform">
-                  PATHS
+                  WHAT IF?
                 </span>
                 <span className="text-xs font-accent-light text-gray-400 -mt-1 tracking-wider">
-                  NOT TAKEN
+                  LIFE
                 </span>
               </div>
             </Link>

@@ -1,5 +1,5 @@
 /*
-  # Initial Schema for Paths Not Taken Platform
+  # Initial Schema for What If Life Platform
 
   1. New Tables
     - `profiles`

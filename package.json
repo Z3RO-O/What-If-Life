@@ -1,5 +1,5 @@
 {
-  "name": "paths-not-taken",
+  "name": "what-if-life",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "decision-analysis",
     "alternate-timeline"
   ],
-  "author": "Paths Not Taken, Inc.",
+  "author": "Z3RO-O",
   "license": "PROPRIETARY",
   "scripts": {
     "dev": "vite",
@@ -73,7 +73,7 @@
     "url": "private"
   },
   "bugs": {
-    "url": "mailto:support@pathsnottaken.com"
+    "url": "mailto:support@whatiflife.com"
   },
-  "homepage": "https://pathsnottaken.com"
+  "homepage": "https://whatiflife.com"
 }

@@ -126,9 +126,9 @@ export const APP_CONSTANTS = {
   URLS: {
     PRIVACY_POLICY: '/privacy',
     TERMS_OF_SERVICE: '/terms',
-    SUPPORT: 'mailto:support@pathsnottaken.com',
+    SUPPORT: 'mailto:support@whatiflife.com',
     DOCUMENTATION: '/docs',
-    STATUS_PAGE: 'https://status.pathsnottaken.com',
+    STATUS_PAGE: 'https://status.whatiflife.com',
   },
 };
 

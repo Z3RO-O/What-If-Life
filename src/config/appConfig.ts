@@ -5,29 +5,23 @@ export const APP_CONFIG = {
 
   // Under development pages/components - DISABLED FOR NOW
   UNDER_DEVELOPMENT: {
-    routes: [
-      // All routes enabled
-    ],
-    components: [
-      // All components enabled
-    ],
-    features: [
-      // All features enabled
-    ],
+    routes: [] as string[],
+    components: [] as string[],
+    features: [] as string[],
   },
 
   // Launch page configuration
   LAUNCH_CONFIG: {
-    title: 'Paths Not Taken',
+    title: 'What If? Life',
     subtitle: 'Your Infinite Potential',
     description:
       'Revolutionary AI-powered life simulation platform. Discover the extraordinary paths your life could have taken with advanced decision analysis.',
     launchDate: '2025-03-15', // YYYY-MM-DD format
     earlyAccessEnabled: false, // Disabled for now
     socialLinks: {
-      twitter: 'https://twitter.com/pathsnottaken',
-      linkedin: 'https://linkedin.com/company/pathsnottaken',
-      email: 'hello@pathsnottaken.com',
+      twitter: 'https://twitter.com/whatiflife',
+      linkedin: 'https://linkedin.com/company/whatiflife',
+      email: 'hello@whatiflife.com',
     },
   },
 };

@@ -1,4 +1,6 @@
-# Paths Not Taken - AI Life Simulation Platform
+# WhatIf Life - AI Life Simulation Platform 🔮
+
+_"See the Life You Didn't Choose"_
 
 ## 🎯 **Project Structure**
 
@@ -23,14 +25,14 @@ src/
 
 ### **Color Palette**
 
-- **Primary**: Emerald-based palette (modern, trustworthy)
-- **Secondary**: Teal and Cyan accents
-- **Premium**: Amber and Orange highlights
-- **Background**: Dark slate with subtle gradients
+- **Primary**: Deep Purple and Violet (mystical, future-focused)
+- **Secondary**: Indigo and Blue accents (trust, intelligence)
+- **Premium**: Golden and Amber highlights (premium experience)
+- **Background**: Dark cosmic themes with subtle gradients
 
 ### **Typography**
 
-- **Headings**: Space Grotesk (stylish, modern)
+- **Headings**: Space Grotesk (modern, futuristic)
 - **Body**: Inter (readable, professional)
 - **Code/Data**: JetBrains Mono (technical elements)
 
@@ -38,17 +40,17 @@ src/
 
 #### **Freemium Components** (`/freemium/`)
 
-- Hero section with free features
-- Basic feature showcase
+- Hero section with basic life simulations
+- Limited scenario showcase
 - Community-focused elements
-- Emerald/teal color scheme
+- Purple/violet color scheme
 
 #### **Premium Components** (`/premium/`)
 
-- Advanced feature displays
-- Pricing sections
-- Premium-only functionality
-- Amber/orange color scheme
+- Advanced AI-powered simulations
+- Unlimited scenarios & detailed analytics
+- Premium-only neuro-AI features
+- Golden/amber color scheme
 
 ## 🚀 **Launch & Development System**
 
@@ -62,9 +64,9 @@ export const APP_CONFIG = {
   IS_LAUNCHED: true, // Show main app
 
   UNDER_DEVELOPMENT: {
-    routes: ['/pricing'], // Full pages
-    components: ['PricingSection'], // UI components
-    features: ['ai-generation'], // Specific features
+    routes: ['/advanced-simulation'], // Full pages
+    components: ['NeuroAIEngine'], // UI components
+    features: ['timeline-visualization'], // Specific features
   },
 };
 ```
@@ -76,8 +78,8 @@ export const APP_CONFIG = {
 ```tsx
 import DevWrapper from '@/components/common/DevWrapper';
 
-<DevWrapper componentName="PricingSection">
-  <PricingSection />
+<DevWrapper componentName="LifeSimulationEngine">
+  <LifeSimulationEngine />
 </DevWrapper>;
 ```
 
@@ -86,9 +88,9 @@ import DevWrapper from '@/components/common/DevWrapper';
 ```tsx
 <UnderDevelopment
   type="feature"
-  name="AI Media Generation"
-  description="Advanced AI-powered media creation"
-  estimatedCompletion="Q3 2025"
+  name="Advanced Neuro-AI Modeling"
+  description="Deep learning-powered life outcome predictions"
+  estimatedCompletion="Q2 2025"
 />
 ```
 
@@ -96,15 +98,15 @@ import DevWrapper from '@/components/common/DevWrapper';
 
 ### **Modern Design**
 
-- ✅ **Glass morphism** effects
+- ✅ **Cosmic glass morphism** effects
 - ✅ **Invisible scrollbars** (all browsers)
-- ✅ **Smooth animations** and micro-interactions
+- ✅ **Smooth timeline animations** and micro-interactions
 - ✅ **Responsive design** (mobile-first)
 
 ### **Professional Organization**
 
-- ✅ **Clear separation** of free vs premium features
-- ✅ **Modular component** structure
+- ✅ **Clear separation** of basic vs advanced simulations
+- ✅ **Modular component** structure for life scenarios
 - ✅ **Consistent naming** conventions
 - ✅ **TypeScript** throughout
 
@@ -129,6 +131,12 @@ npm run lint
 
 # Preview production build
 npm run preview
+
+# Run AI model tests
+npm run test:ai
+
+# Generate life simulation data
+npm run generate:scenarios
 ```
 
 ## 📱 **Responsive Breakpoints**
@@ -142,44 +150,97 @@ npm run preview
 
 ```css
 /* Typography */
-.font-heading     /* Space Grotesk for headings */
-.font-display     /* Space Grotesk for display text */
-.font-mono        /* JetBrains Mono for code/data */
+.font-heading        /* Space Grotesk for headings */
+.font-display        /* Space Grotesk for display text */
+.font-mono           /* JetBrains Mono for code/data */
 
 /* Gradients */
-.gradient-text    /* Emerald gradient text */
-.premium-gradient /* Amber/orange gradient text */
+.whatif-gradient     /* Purple/violet gradient text */
+.premium-gradient    /* Golden/amber gradient text */
+.cosmic-gradient     /* Deep space gradient background */
 
 /* Effects */
-.glass           /* Glass morphism background */
-.glass-hover     /* Glass with hover effects */
-.emerald-glow    /* Emerald glow effect */
-.premium-glow    /* Premium amber glow */
+.glass               /* Glass morphism background */
+.glass-hover         /* Glass with hover effects */
+.purple-glow         /* Purple mystical glow effect */
+.premium-glow        /* Premium golden glow */
+.timeline-glow       /* Timeline visualization glow */
 
 /* Cards */
-.freemium-card   /* Free tier styling */
-.premium-card    /* Premium tier styling */
+.freemium-card       /* Basic tier styling */
+.premium-card        /* Premium tier styling */
+.simulation-card     /* Life simulation display */
+.outcome-card        /* Outcome visualization */
 ```
+
+## 🧠 **AI Components Structure**
+
+```
+src/components/ai/
+├── LifeSimulator/      # Core simulation engine
+├── OutcomePredictor/   # AI prediction models
+├── TimelineVisualizer/ # Interactive timeline display
+├── DecisionTree/       # Decision point mapping
+└── NeuroAnalyzer/      # Advanced neuro-AI features
+```
+
+## 🔮 **Simulation Features**
+
+### **Free Tier**
+
+- 3 life simulations per month
+- Basic outcome predictions
+- Simple timeline visualization
+- Community scenario sharing
+
+### **Premium Tier**
+
+- Unlimited simulations
+- Advanced neuro-AI modeling
+- Detailed probability analytics
+- Custom scenario creation
+- Export & sharing capabilities
 
 ## 🚀 **Deployment Ready**
 
 The project is production-ready with:
 
-- SEO-friendly meta tags
-- Optimized bundle sizes
-- Progressive enhancement
+- SEO-friendly meta tags for life simulation content
+- Optimized AI model loading
+- Progressive enhancement for complex visualizations
 - Accessibility compliance
 - Cross-browser compatibility
 
 ## 📈 **Performance Optimizations**
 
-- Lazy loading for components
-- Image optimization
-- Code splitting by feature
-- Minimal bundle sizes
-- Efficient re-renders
+- Lazy loading for AI models
+- Simulation result caching
+- Code splitting by simulation features
+- Minimal bundle sizes for core functionality
+- Efficient re-renders for timeline updates
+
+## 🎭 **Theme Variables**
+
+```css
+:root {
+  /* WhatIf Life Brand Colors */
+  --whatif-primary: #8b5cf6; /* Deep Purple */
+  --whatif-secondary: #06b6d4; /* Cyan */
+  --whatif-premium: #f59e0b; /* Amber */
+  --whatif-cosmic: #1e1b4b; /* Dark Indigo */
+
+  /* Simulation Colors */
+  --timeline-past: #64748b; /* Slate */
+  --timeline-present: #8b5cf6; /* Purple */
+  --timeline-future: #06b6d4; /* Cyan */
+  --outcome-positive: #10b981; /* Emerald */
+  --outcome-negative: #ef4444; /* Red */
+}
+```
 
 ---
 
-**Built with modern web technologies for maximum performance and user
-experience.**
+**Built with cutting-edge AI technology to explore infinite life
+possibilities.**
+
+_"What if you could see every path your life could take?"_ ✨

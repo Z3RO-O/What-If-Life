@@ -51,7 +51,7 @@ function App() {
                       <div className="text-center">
                         <h1 className="text-4xl font-dotted text-emerald-400 mb-4">CONTACT US</h1>
                         <p className="text-xl text-gray-300 max-w-2xl">
-                          Get in touch: hello@pathsnottaken.com
+                          Get in touch: hello@whatiflife.com
                         </p>
                       </div>
                     </div>
