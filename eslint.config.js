@@ -24,19 +24,16 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+
       // TypeScript specific rules
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { 
+        {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_'
-        }
+          caughtErrorsIgnorePattern: '^_',
+        },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
@@ -44,7 +41,7 @@ export default tseslint.config(
       '@typescript-eslint/no-non-null-assertion': 'warn',
       '@typescript-eslint/prefer-const': 'error',
       '@typescript-eslint/no-var-requires': 'error',
-      
+
       // General JavaScript/TypeScript rules
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'error',
@@ -57,11 +54,11 @@ export default tseslint.config(
       'no-unused-expressions': 'error',
       'no-unreachable': 'error',
       'no-undef': 'error',
-      
+
       // Code style and formatting
-      'indent': ['error', 2, { SwitchCase: 1 }],
-      'quotes': ['error', 'single', { avoidEscape: true }],
-      'semi': ['error', 'always'],
+      indent: ['error', 2, { SwitchCase: 1 }],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
       'comma-dangle': ['error', 'es5'],
       'object-curly-spacing': ['error', 'always'],
       'array-bracket-spacing': ['error', 'never'],
@@ -71,10 +68,10 @@ export default tseslint.config(
       'eol-last': 'error',
       'no-trailing-spaces': 'error',
       'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }],
-      
+
       // Best practices
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-new-func': 'error',
@@ -87,24 +84,27 @@ export default tseslint.config(
       'no-useless-return': 'error',
       'prefer-promise-reject-errors': 'error',
       'require-await': 'error',
-      
+
       // React specific rules
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      
+
       // Import/Export rules
       'no-duplicate-imports': 'error',
-      'sort-imports': ['error', {
-        ignoreCase: true,
-        ignoreDeclarationSort: true,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-      }],
-      
+      'sort-imports': [
+        'error',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        },
+      ],
+
       // Performance
       'no-inner-declarations': 'error',
       'no-loop-func': 'error',
-      
+
       // Security
       'no-eval': 'error',
       'no-implied-eval': 'error',

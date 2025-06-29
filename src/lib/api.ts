@@ -4,7 +4,9 @@ import type { Decision, Simulation } from '@/types';
 export const api = {
   // Decision management
   async createDecision(decision: Omit<Decision, 'id' | 'createdAt'>) {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
@@ -28,7 +30,9 @@ export const api = {
   },
 
   async getUserDecisions() {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
@@ -43,7 +47,9 @@ export const api = {
 
   // Simulation management
   async processSimulation(decisionId: string) {
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session) throw new Error('Not authenticated');
 
     const response = await fetch(
@@ -51,7 +57,7 @@ export const api = {
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${session.access_token}`,
+          Authorization: `Bearer ${session.access_token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ decision_id: decisionId }),
@@ -66,16 +72,20 @@ export const api = {
   },
 
   async getSimulation(simulationId: string) {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
       .from('simulations')
-      .select(`
+      .select(
+        `
         *,
         decisions (*),
         life_events (*)
-      `)
+      `
+      )
       .eq('id', simulationId)
       .eq('user_id', user.id)
       .single();
@@ -85,15 +95,19 @@ export const api = {
   },
 
   async getUserSimulations() {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
       .from('simulations')
-      .select(`
+      .select(
+        `
         *,
         decisions (title, category)
-      `)
+      `
+      )
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 
@@ -103,14 +117,16 @@ export const api = {
 
   // User statistics
   async getUserStats() {
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session) throw new Error('Not authenticated');
 
     const response = await fetch(
       `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-user-stats`,
       {
         headers: {
-          'Authorization': `Bearer ${session.access_token}`,
+          Authorization: `Bearer ${session.access_token}`,
         },
       }
     );

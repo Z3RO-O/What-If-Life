@@ -19,8 +19,8 @@ export const authService = {
         emailRedirectTo: `${window.location.origin}/auth/callback`,
         data: {
           full_name: fullName || null,
-        }
-      }
+        },
+      },
     });
 
     if (error) throw error;
@@ -51,7 +51,7 @@ export const authService = {
           access_type: 'offline',
           prompt: 'consent',
         },
-      }
+      },
     });
 
     if (error) throw error;
@@ -64,7 +64,7 @@ export const authService = {
       email,
       options: {
         emailRedirectTo: `${window.location.origin}/auth/callback`,
-      }
+      },
     });
 
     if (error) throw error;
@@ -76,7 +76,7 @@ export const authService = {
     const { data, error } = await supabase.auth.verifyOtp({
       email,
       token,
-      type: 'email'
+      type: 'email',
     });
 
     if (error) throw error;
@@ -89,8 +89,8 @@ export const authService = {
       type: 'signup',
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`
-      }
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
     });
 
     if (error) throw error;
@@ -105,8 +105,11 @@ export const authService = {
 
   // Get current user with profile
   async getCurrentUser(): Promise<AuthUser | null> {
-    const { data: { user }, error } = await supabase.auth.getUser();
-    
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+
     if (error || !user) return null;
 
     // Fetch profile data
@@ -124,13 +127,12 @@ export const authService = {
 
   // Update profile
   async updateProfile(updates: { full_name?: string; avatar_url?: string }) {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('No authenticated user');
 
-    const { error } = await supabase
-      .from('profiles')
-      .update(updates)
-      .eq('id', user.id);
+    const { error } = await supabase.from('profiles').update(updates).eq('id', user.id);
 
     if (error) throw error;
   },
@@ -150,9 +152,9 @@ export const authService = {
   // Handle OAuth callback
   async handleAuthCallback() {
     const { data, error } = await supabase.auth.getSession();
-    
+
     if (error) throw error;
-    
+
     // If user signed in with OAuth and doesn't have a profile, create one
     if (data.session?.user) {
       const { data: existingProfile } = await supabase
@@ -162,16 +164,18 @@ export const authService = {
         .single();
 
       if (!existingProfile) {
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({
-            id: data.session.user.id,
-            email: data.session.user.email!,
-            full_name: data.session.user.user_metadata?.full_name || 
-                      data.session.user.user_metadata?.name || null,
-            avatar_url: data.session.user.user_metadata?.avatar_url || 
-                       data.session.user.user_metadata?.picture || null,
-          });
+        const { error: profileError } = await supabase.from('profiles').insert({
+          id: data.session.user.id,
+          email: data.session.user.email!,
+          full_name:
+            data.session.user.user_metadata?.full_name ||
+            data.session.user.user_metadata?.name ||
+            null,
+          avatar_url:
+            data.session.user.user_metadata?.avatar_url ||
+            data.session.user.user_metadata?.picture ||
+            null,
+        });
 
         if (profileError) {
           console.error('Profile creation error:', profileError);

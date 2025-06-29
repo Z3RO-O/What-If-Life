@@ -11,20 +11,20 @@ interface DevWrapperProps {
   estimatedCompletion?: string;
 }
 
-export default function DevWrapper({ 
-  children, 
-  componentName, 
+export default function DevWrapper({
+  children,
+  componentName,
   featureName,
   type = 'component',
   description,
-  estimatedCompletion 
+  estimatedCompletion,
 }: DevWrapperProps) {
   const name = componentName || featureName;
-  const isUnderDev = componentName 
+  const isUnderDev = componentName
     ? isComponentUnderDevelopment(componentName)
-    : featureName 
-    ? isFeatureUnderDevelopment(featureName)
-    : false;
+    : featureName
+      ? isFeatureUnderDevelopment(featureName)
+      : false;
 
   if (isUnderDev && name) {
     return (

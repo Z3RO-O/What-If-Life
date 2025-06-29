@@ -37,13 +37,13 @@ const AI_MODELS = {
   // Stable Diffusion via Hugging Face Inference API (free tier)
   image: {
     endpoint: 'https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5',
-    fallback: 'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1'
+    fallback: 'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1',
   },
   // Video generation via free APIs
   video: {
     endpoint: 'https://api-inference.huggingface.co/models/damo-vilab/text-to-video-ms-1.7b',
-    fallback: 'https://api-inference.huggingface.co/models/ali-vilab/text-to-video-synthesis'
-  }
+    fallback: 'https://api-inference.huggingface.co/models/ali-vilab/text-to-video-synthesis',
+  },
 };
 
 Deno.serve(async (req: Request) => {
@@ -62,41 +62,33 @@ Deno.serve(async (req: Request) => {
 
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
-      return new Response(
-        JSON.stringify({ error: 'Authorization header required' }),
-        {
-          status: 401,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
-      );
+      return new Response(JSON.stringify({ error: 'Authorization header required' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     // Get user from auth header
-    const { data: { user }, error: authError } = await supabase.auth.getUser(
-      authHeader.replace('Bearer ', '')
-    );
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(authHeader.replace('Bearer ', ''));
 
     if (authError || !user) {
-      return new Response(
-        JSON.stringify({ error: 'Invalid authentication' }),
-        {
-          status: 401,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
-      );
+      return new Response(JSON.stringify({ error: 'Invalid authentication' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const request: MediaGenerationRequest = await req.json();
 
     // Validate request
     if (!request.simulation_id || !request.prompt || !request.type) {
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
-      );
+      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     // Verify user owns the simulation
@@ -107,18 +99,15 @@ Deno.serve(async (req: Request) => {
       .single();
 
     if (simError || !simulation || simulation.user_id !== user.id) {
-      return new Response(
-        JSON.stringify({ error: 'Simulation not found or access denied' }),
-        {
-          status: 403,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
-      );
+      return new Response(JSON.stringify({ error: 'Simulation not found or access denied' }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     // Generate media based on type
     let generatedMedia: GeneratedMedia;
-    
+
     if (request.type === 'image') {
       generatedMedia = await generateImage(request);
     } else {
@@ -149,28 +138,24 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({
         success: true,
         media: generatedMedia,
-        media_id: mediaRecord?.id
+        media_id: mediaRecord?.id,
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     );
-
   } catch (error) {
     console.error('Media generation error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Media generation failed' }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
-    );
+    return new Response(JSON.stringify({ error: 'Media generation failed' }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 });
 
 async function generateImage(request: MediaGenerationRequest): Promise<GeneratedMedia> {
   const enhancedPrompt = enhancePromptForImage(request.prompt, request.style);
-  
+
   try {
     // Try primary model first
     let response = await callHuggingFaceAPI(AI_MODELS.image.endpoint, {
@@ -180,7 +165,7 @@ async function generateImage(request: MediaGenerationRequest): Promise<Generated
         guidance_scale: 7.5,
         width: 1024,
         height: 1024,
-      }
+      },
     });
 
     if (!response.ok) {
@@ -190,7 +175,7 @@ async function generateImage(request: MediaGenerationRequest): Promise<Generated
         parameters: {
           num_inference_steps: 30,
           guidance_scale: 7.0,
-        }
+        },
       });
     }
 
@@ -210,8 +195,8 @@ async function generateImage(request: MediaGenerationRequest): Promise<Generated
         model: 'stable-diffusion',
         resolution: '1024x1024',
         steps: 50,
-        guidance: 7.5
-      }
+        guidance: 7.5,
+      },
     };
   } catch (error) {
     console.error('Image generation error:', error);
@@ -223,7 +208,7 @@ async function generateImage(request: MediaGenerationRequest): Promise<Generated
 async function generateVideo(request: MediaGenerationRequest): Promise<GeneratedMedia> {
   const enhancedPrompt = enhancePromptForVideo(request.prompt, request.style);
   const duration = Math.min(request.duration || 5, 10); // Max 10 seconds for free tier
-  
+
   try {
     // Try primary video model
     let response = await callHuggingFaceAPI(AI_MODELS.video.endpoint, {
@@ -232,7 +217,7 @@ async function generateVideo(request: MediaGenerationRequest): Promise<Generated
         num_frames: duration * 8, // 8 FPS
         height: 512,
         width: 512,
-      }
+      },
     });
 
     if (!response.ok) {
@@ -241,7 +226,7 @@ async function generateVideo(request: MediaGenerationRequest): Promise<Generated
         inputs: enhancedPrompt,
         parameters: {
           max_frames: duration * 6,
-        }
+        },
       });
     }
 
@@ -261,8 +246,8 @@ async function generateVideo(request: MediaGenerationRequest): Promise<Generated
         model: 'text-to-video',
         duration: duration,
         fps: 8,
-        resolution: '512x512'
-      }
+        resolution: '512x512',
+      },
     };
   } catch (error) {
     console.error('Video generation error:', error);
@@ -273,18 +258,22 @@ async function generateVideo(request: MediaGenerationRequest): Promise<Generated
 
 async function callHuggingFaceAPI(endpoint: string, payload: any): Promise<Response> {
   const hfToken = Deno.env.get('HUGGINGFACE_API_TOKEN');
-  
+
   return fetch(endpoint, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${hfToken}`,
+      Authorization: `Bearer ${hfToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
   });
 }
 
-async function uploadToSupabase(blob: Blob, type: 'image' | 'video', simulationId: string): Promise<string> {
+async function uploadToSupabase(
+  blob: Blob,
+  type: 'image' | 'video',
+  simulationId: string
+): Promise<string> {
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
@@ -294,21 +283,19 @@ async function uploadToSupabase(blob: Blob, type: 'image' | 'video', simulationI
   const fileName = `${simulationId}/${Date.now()}.${fileExt}`;
   const filePath = `generated-media/${fileName}`;
 
-  const { data, error } = await supabase.storage
-    .from('media')
-    .upload(filePath, blob, {
-      contentType: type === 'image' ? 'image/png' : 'video/mp4',
-      upsert: false
-    });
+  const { data, error } = await supabase.storage.from('media').upload(filePath, blob, {
+    contentType: type === 'image' ? 'image/png' : 'video/mp4',
+    upsert: false,
+  });
 
   if (error) {
     throw new Error(`Upload failed: ${error.message}`);
   }
 
   // Get public URL
-  const { data: { publicUrl } } = supabase.storage
-    .from('media')
-    .getPublicUrl(filePath);
+  const {
+    data: { publicUrl },
+  } = supabase.storage.from('media').getPublicUrl(filePath);
 
   return publicUrl;
 }
@@ -320,11 +307,12 @@ function enhancePromptForImage(prompt: string, style?: string): string {
     cinematic: 'cinematic lighting, dramatic, film still, professional photography',
     vintage: 'vintage style, retro, nostalgic, film grain, muted colors',
     futuristic: 'futuristic, sci-fi, high-tech, neon lights, cyberpunk',
-    minimalist: 'minimalist, clean, simple, elegant, modern design'
+    minimalist: 'minimalist, clean, simple, elegant, modern design',
   };
 
-  const baseStyle = styleModifiers[style as keyof typeof styleModifiers] || styleModifiers.realistic;
-  
+  const baseStyle =
+    styleModifiers[style as keyof typeof styleModifiers] || styleModifiers.realistic;
+
   return `${prompt}, ${baseStyle}, masterpiece, best quality, highly detailed`;
 }
 
@@ -334,18 +322,18 @@ function enhancePromptForVideo(prompt: string, style?: string): string {
     documentary: 'documentary style, natural lighting, realistic movement',
     artistic: 'artistic video, creative transitions, expressive movement',
     timelapse: 'time-lapse style, accelerated motion, dynamic changes',
-    slowmotion: 'slow motion, fluid movement, dramatic effect'
+    slowmotion: 'slow motion, fluid movement, dramatic effect',
   };
 
   const baseStyle = videoStyles[style as keyof typeof videoStyles] || videoStyles.cinematic;
-  
+
   return `${prompt}, ${baseStyle}, high quality video, smooth motion, detailed`;
 }
 
 async function generateFallbackImage(request: MediaGenerationRequest): Promise<GeneratedMedia> {
   // Create a simple placeholder image using canvas or return a stock image
   const placeholderUrl = `https://picsum.photos/1024/1024?random=${Date.now()}`;
-  
+
   return {
     url: placeholderUrl,
     type: 'image',
@@ -353,8 +341,8 @@ async function generateFallbackImage(request: MediaGenerationRequest): Promise<G
     style: request.style || 'placeholder',
     metadata: {
       model: 'fallback',
-      type: 'placeholder'
-    }
+      type: 'placeholder',
+    },
   };
 }
 
@@ -362,7 +350,7 @@ async function generateVideoFromImages(request: MediaGenerationRequest): Promise
   // Fallback: generate multiple images and create a simple slideshow video
   // This is a simplified approach - in production, you'd use FFmpeg or similar
   const placeholderUrl = `https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4`;
-  
+
   return {
     url: placeholderUrl,
     type: 'video',
@@ -371,7 +359,7 @@ async function generateVideoFromImages(request: MediaGenerationRequest): Promise
     metadata: {
       model: 'fallback',
       type: 'slideshow',
-      duration: 5
-    }
+      duration: 5,
+    },
   };
 }

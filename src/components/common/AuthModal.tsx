@@ -24,7 +24,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
   const [otpCode, setOtpCode] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp, signInWithGoogle, signInWithOTP, verifyOTP, resendConfirmation } = useAuth();
+  const { signIn, signUp, signInWithGoogle, signInWithOTP, verifyOTP, resendConfirmation } =
+    useAuth();
 
   const handleEmailPasswordAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,8 +111,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-gray-300">
-                We've sent a confirmation link to <strong>{email}</strong>. 
-                Please check your email and click the link to verify your account.
+                We've sent a confirmation link to <strong>{email}</strong>. Please check your email
+                and click the link to verify your account.
               </p>
               <Button
                 variant="link"
@@ -155,7 +156,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                   <Input
                     type="text"
                     value={otpCode}
-                    onChange={(e) => setOtpCode(e.target.value)}
+                    onChange={e => setOtpCode(e.target.value)}
                     placeholder="Enter 6-digit code"
                     className="text-center text-2xl tracking-widest bg-white/10 border-white/20 text-white"
                     maxLength={6}
@@ -209,7 +210,9 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
               </p>
               <form onSubmit={handleOTPAuth} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-300">Email</Label>
+                  <Label htmlFor="email" className="text-gray-300">
+                    Email
+                  </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input
@@ -217,7 +220,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       className="pl-10 bg-white/10 border-white/20 text-white"
                       placeholder="Enter your email"
                     />
@@ -277,14 +280,16 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
               <form onSubmit={handleEmailPasswordAuth} className="space-y-4">
                 {step === 'signup' && (
                   <div className="space-y-2">
-                    <Label htmlFor="fullName" className="text-gray-300">Full Name</Label>
+                    <Label htmlFor="fullName" className="text-gray-300">
+                      Full Name
+                    </Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <Input
                         id="fullName"
                         type="text"
                         value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        onChange={e => setFullName(e.target.value)}
                         className="pl-10 bg-white/10 border-white/20 text-white"
                         placeholder="Enter your full name"
                       />
@@ -293,7 +298,9 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-300">Email</Label>
+                  <Label htmlFor="email" className="text-gray-300">
+                    Email
+                  </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input
@@ -301,7 +308,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       className="pl-10 bg-white/10 border-white/20 text-white"
                       placeholder="Enter your email"
                     />
@@ -309,7 +316,9 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-gray-300">Password</Label>
+                  <Label htmlFor="password" className="text-gray-300">
+                    Password
+                  </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input
@@ -317,7 +326,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       type="password"
                       required
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={e => setPassword(e.target.value)}
                       className="pl-10 bg-white/10 border-white/20 text-white"
                       placeholder="Enter your password"
                       minLength={6}
@@ -361,10 +370,8 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
             <AlertDescription className="text-red-400">{error}</AlertDescription>
           </Alert>
         )}
-        
-        <Card className="bg-transparent border-none shadow-none">
-          {renderContent()}
-        </Card>
+
+        <Card className="bg-transparent border-none shadow-none">{renderContent()}</Card>
       </DialogContent>
     </Dialog>
   );

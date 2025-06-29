@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Brain, 
-  Mail, 
-  Twitter, 
-  Linkedin, 
-  Clock, 
-  Star, 
-  Sparkles, 
+import {
+  Brain,
+  Mail,
+  Twitter,
+  Linkedin,
+  Clock,
+  Star,
+  Sparkles,
   ArrowRight,
   CheckCircle,
   Zap,
-  Play
+  Play,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,7 +24,7 @@ export default function LaunchPage() {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function LaunchPage() {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
         });
       }
     };
@@ -62,18 +62,19 @@ export default function LaunchPage() {
     {
       icon: Brain,
       title: 'AI-Powered Simulations',
-      description: 'Advanced neural networks analyze your decisions to create accurate life predictions'
+      description:
+        'Advanced neural networks analyze your decisions to create accurate life predictions',
     },
     {
       icon: Sparkles,
       title: 'Infinite Possibilities',
-      description: 'Explore unlimited alternate timelines based on different life choices'
+      description: 'Explore unlimited alternate timelines based on different life choices',
     },
     {
       icon: Zap,
       title: 'Instant Insights',
-      description: 'Get personalized recommendations to optimize your future decisions'
-    }
+      description: 'Get personalized recommendations to optimize your future decisions',
+    },
   ];
 
   return (
@@ -81,8 +82,14 @@ export default function LaunchPage() {
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-400/10 to-teal-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-teal-500/5 to-cyan-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+        <div
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '2s' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-teal-500/5 to-cyan-500/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '4s' }}
+        />
       </div>
 
       <div className="relative z-10 min-h-screen flex flex-col">
@@ -90,7 +97,9 @@ export default function LaunchPage() {
         <header className="p-6">
           <div className="flex items-center space-x-2">
             <Brain className="h-8 w-8 text-emerald-400" />
-            <span className="text-xl font-heading text-white">{APP_CONFIG.LAUNCH_CONFIG.title}</span>
+            <span className="text-xl font-heading text-white">
+              {APP_CONFIG.LAUNCH_CONFIG.title}
+            </span>
           </div>
         </header>
 
@@ -107,9 +116,7 @@ export default function LaunchPage() {
             {/* Hero Section */}
             <h1 className="text-5xl md:text-7xl font-heading text-white mb-6 leading-tight">
               {APP_CONFIG.LAUNCH_CONFIG.subtitle}
-              <span className="block gradient-text">
-                Awaits Discovery
-              </span>
+              <span className="block gradient-text">Awaits Discovery</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -128,8 +135,8 @@ export default function LaunchPage() {
                     { label: 'Days', value: timeLeft.days },
                     { label: 'Hours', value: timeLeft.hours },
                     { label: 'Minutes', value: timeLeft.minutes },
-                    { label: 'Seconds', value: timeLeft.seconds }
-                  ].map((item) => (
+                    { label: 'Seconds', value: timeLeft.seconds },
+                  ].map(item => (
                     <div key={item.label} className="text-center">
                       <div className="text-3xl md:text-4xl font-bold font-mono text-white freemium-card rounded-lg py-4 mb-2">
                         {item.value.toString().padStart(2, '0')}
@@ -150,14 +157,14 @@ export default function LaunchPage() {
                   <p className="text-gray-300 text-sm mb-4">
                     Be among the first to explore your alternate life paths
                   </p>
-                  
+
                   {!isSubscribed ? (
                     <form onSubmit={handleEarlyAccess} className="space-y-4">
                       <Input
                         type="email"
                         placeholder="Enter your email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                         className="glass text-white placeholder-gray-400"
                         required
                       />
@@ -175,7 +182,8 @@ export default function LaunchPage() {
                       <CheckCircle className="h-12 w-12 text-emerald-400 mx-auto mb-3" />
                       <h4 className="text-lg font-semibold text-white mb-2">You're In!</h4>
                       <p className="text-gray-300 text-sm">
-                        We'll notify you as soon as we launch. Get ready to discover your infinite potential!
+                        We'll notify you as soon as we launch. Get ready to discover your infinite
+                        potential!
                       </p>
                     </div>
                   )}

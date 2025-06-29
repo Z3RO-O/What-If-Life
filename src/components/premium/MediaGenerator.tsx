@@ -9,7 +9,12 @@ interface MediaGeneratorProps {
   onMediaGenerated?: (media: GeneratedMedia) => void;
 }
 
-export default function MediaGenerator({ simulationId, eventId, event, onMediaGenerated }: MediaGeneratorProps) {
+export default function MediaGenerator({
+  simulationId,
+  eventId,
+  event,
+  onMediaGenerated,
+}: MediaGeneratorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [mediaType, setMediaType] = useState<'image' | 'video'>('image');
@@ -132,7 +137,7 @@ export default function MediaGenerator({ simulationId, eventId, event, onMediaGe
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-300 mb-3">Style</label>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {styles.map((styleOption) => (
+          {styles.map(styleOption => (
             <button
               key={styleOption.value}
               onClick={() => setStyle(styleOption.value as any)}
@@ -160,7 +165,7 @@ export default function MediaGenerator({ simulationId, eventId, event, onMediaGe
             min="3"
             max="10"
             value={duration}
-            onChange={(e) => setDuration(Number(e.target.value))}
+            onChange={e => setDuration(Number(e.target.value))}
             className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer"
           />
         </div>
@@ -189,7 +194,7 @@ export default function MediaGenerator({ simulationId, eventId, event, onMediaGe
         <label className="block text-sm font-medium text-gray-300 mb-3">Prompt</label>
         <textarea
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          onChange={e => setPrompt(e.target.value)}
           placeholder="Describe what you want to generate..."
           rows={3}
           className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
@@ -227,7 +232,7 @@ export default function MediaGenerator({ simulationId, eventId, event, onMediaGe
         <div className="mt-8">
           <h4 className="text-lg font-semibold text-white mb-4">Generated Media</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {generatedMedia.map((media) => (
+            {generatedMedia.map(media => (
               <div key={media.id} className="bg-white/5 rounded-xl p-4 border border-white/10">
                 {media.type === 'image' ? (
                   <img

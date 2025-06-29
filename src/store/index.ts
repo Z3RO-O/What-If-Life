@@ -17,17 +17,17 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   devtools(
     persist(
-      (set) => ({
+      set => ({
         user: null,
         isAuthenticated: false,
         loading: true,
-        setUser: (user) => set({ user, isAuthenticated: !!user }),
-        setLoading: (loading) => set({ loading }),
+        setUser: user => set({ user, isAuthenticated: !!user }),
+        setLoading: loading => set({ loading }),
         clearAuth: () => set({ user: null, isAuthenticated: false }),
       }),
       {
         name: 'auth-storage',
-        partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
+        partialize: state => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
       }
     ),
     { name: 'auth-store' }
@@ -51,13 +51,13 @@ export const useSimulationStore = create<SimulationState>()(
       currentSimulation: null,
       simulations: [],
       loading: false,
-      setCurrentSimulation: (simulation) => set({ currentSimulation: simulation }),
-      setSimulations: (simulations) => set({ simulations }),
-      addSimulation: (simulation) => {
+      setCurrentSimulation: simulation => set({ currentSimulation: simulation }),
+      setSimulations: simulations => set({ simulations }),
+      addSimulation: simulation => {
         const { simulations } = get();
         set({ simulations: [simulation, ...simulations] });
       },
-      setLoading: (loading) => set({ loading }),
+      setLoading: loading => set({ loading }),
     }),
     { name: 'simulation-store' }
   )
@@ -89,18 +89,20 @@ export const useUIStore = create<UIState>()(
           const { sidebarOpen } = get();
           set({ sidebarOpen: !sidebarOpen });
         },
-        addNotification: (notification) => {
+        addNotification: notification => {
           const { notifications } = get();
-          set({ notifications: [...notifications, { ...notification, id: Date.now().toString() }] });
+          set({
+            notifications: [...notifications, { ...notification, id: Date.now().toString() }],
+          });
         },
-        removeNotification: (id) => {
+        removeNotification: id => {
           const { notifications } = get();
           set({ notifications: notifications.filter(n => n.id !== id) });
         },
       }),
       {
         name: 'ui-storage',
-        partialize: (state) => ({ theme: state.theme }),
+        partialize: state => ({ theme: state.theme }),
       }
     ),
     { name: 'ui-store' }

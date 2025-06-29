@@ -67,18 +67,24 @@ function TimelineItem({ event, delay, simulationId }: TimelineItemProps) {
   };
 
   const impactColors = {
-    positive: event.is_alternate ? 'text-green-400 bg-green-400/20' : 'text-blue-400 bg-blue-400/20',
+    positive: event.is_alternate
+      ? 'text-green-400 bg-green-400/20'
+      : 'text-blue-400 bg-blue-400/20',
     negative: 'text-red-400 bg-red-400/20',
-    neutral: 'text-gray-400 bg-gray-400/20'
+    neutral: 'text-gray-400 bg-gray-400/20',
   };
 
   return (
-    <div className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+    <div
+      className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+    >
       <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-lg font-semibold text-white">{event.title}</h3>
           <div className="flex items-center space-x-2">
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${impactColors[event.impact]}`}>
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-medium ${impactColors[event.impact]}`}
+            >
               {event.impact}
             </span>
             <button
@@ -90,9 +96,9 @@ function TimelineItem({ event, delay, simulationId }: TimelineItemProps) {
             </button>
           </div>
         </div>
-        
+
         <p className="text-gray-300 mb-3">{event.description}</p>
-        
+
         <div className="flex justify-between items-center text-sm mb-4">
           <span className="text-gray-400">{event.timeline}</span>
           <span className="text-gray-400">{Math.round(event.probability * 100)}% likelihood</span>
@@ -104,45 +110,47 @@ function TimelineItem({ event, delay, simulationId }: TimelineItemProps) {
             <Loader className="h-5 w-5 text-blue-400 animate-spin" />
             <span className="ml-2 text-gray-400">Loading media...</span>
           </div>
-        ) : eventMedia.length > 0 && (
-          <div className="mb-4">
-            <div className="grid grid-cols-2 gap-3">
-              {eventMedia.slice(0, 4).map((media) => (
-                <div key={media.id} className="relative group">
-                  {media.type === 'image' ? (
-                    <img
-                      src={media.url}
-                      alt={media.prompt}
-                      className="w-full h-24 object-cover rounded-lg"
-                    />
-                  ) : (
-                    <video
-                      src={media.url}
-                      className="w-full h-24 object-cover rounded-lg"
-                      muted
-                      loop
-                      autoPlay
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                    <a
-                      href={media.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-blue-300"
-                    >
-                      <Download className="h-4 w-4" />
-                    </a>
+        ) : (
+          eventMedia.length > 0 && (
+            <div className="mb-4">
+              <div className="grid grid-cols-2 gap-3">
+                {eventMedia.slice(0, 4).map(media => (
+                  <div key={media.id} className="relative group">
+                    {media.type === 'image' ? (
+                      <img
+                        src={media.url}
+                        alt={media.prompt}
+                        className="w-full h-24 object-cover rounded-lg"
+                      />
+                    ) : (
+                      <video
+                        src={media.url}
+                        className="w-full h-24 object-cover rounded-lg"
+                        muted
+                        loop
+                        autoPlay
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                      <a
+                        href={media.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-blue-300"
+                      >
+                        <Download className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {eventMedia.length > 4 && (
+                <p className="text-xs text-gray-400 mt-2">
+                  +{eventMedia.length - 4} more media items
+                </p>
+              )}
             </div>
-            {eventMedia.length > 4 && (
-              <p className="text-xs text-gray-400 mt-2">
-                +{eventMedia.length - 4} more media items
-              </p>
-            )}
-          </div>
+          )
         )}
 
         {/* Media Generator */}
@@ -217,7 +225,9 @@ export default function SimulationResults() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Simulation Not Found</h1>
-          <p className="text-xl text-gray-300 mb-8">{error || 'The requested simulation could not be found.'}</p>
+          <p className="text-xl text-gray-300 mb-8">
+            {error || 'The requested simulation could not be found.'}
+          </p>
           <button
             onClick={() => navigate('/dashboard')}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
@@ -242,7 +252,7 @@ export default function SimulationResults() {
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Dashboard</span>
         </button>
-        
+
         <div className="flex space-x-3">
           <button
             onClick={() => setShowGlobalMediaGenerator(!showGlobalMediaGenerator)}
@@ -268,7 +278,9 @@ export default function SimulationResults() {
         <p className="text-xl text-gray-300 mb-6">{simulation.decisions.title}</p>
         <div className="inline-flex items-center space-x-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="font-medium">{Math.round(simulation.confidence_score * 100)}% Confidence</span>
+          <span className="font-medium">
+            {Math.round(simulation.confidence_score * 100)}% Confidence
+          </span>
         </div>
       </div>
 
@@ -280,7 +292,7 @@ export default function SimulationResults() {
             event={{
               title: simulation.decisions.title,
               category: simulation.decisions.category,
-              impact: 'neutral'
+              impact: 'neutral',
             }}
           />
         </div>
@@ -294,9 +306,9 @@ export default function SimulationResults() {
           </h2>
           <div className="space-y-4">
             {originalEvents.map((event, index) => (
-              <TimelineItem 
-                key={event.id} 
-                event={event} 
+              <TimelineItem
+                key={event.id}
+                event={event}
                 delay={index * 200}
                 simulationId={simulation.id}
               />
@@ -311,9 +323,9 @@ export default function SimulationResults() {
           </h2>
           <div className="space-y-4">
             {alternateEvents.map((event, index) => (
-              <TimelineItem 
-                key={event.id} 
-                event={event} 
+              <TimelineItem
+                key={event.id}
+                event={event}
                 delay={index * 200 + 100}
                 simulationId={simulation.id}
               />
@@ -329,7 +341,7 @@ export default function SimulationResults() {
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {simulation.insights.map((insight, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white/5 rounded-xl p-4 border border-white/10"
               style={{ animationDelay: `${index * 150}ms` }}

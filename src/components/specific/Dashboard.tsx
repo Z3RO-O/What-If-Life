@@ -47,7 +47,8 @@ export default function Dashboard() {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-6">Dashboard Access Required</h1>
           <p className="text-xl text-gray-300 mb-8">
-            Please sign in to view your simulation dashboard and track your alternate life explorations.
+            Please sign in to view your simulation dashboard and track your alternate life
+            explorations.
           </p>
           <Link
             to="/"
@@ -72,10 +73,30 @@ export default function Dashboard() {
   }
 
   const statsData = [
-    { name: 'Total Simulations', value: stats?.totalSimulations.toString() || '0', icon: Brain, color: 'text-blue-400' },
-    { name: 'Avg. Confidence', value: `${stats?.avgConfidence || 0}%`, icon: TrendingUp, color: 'text-green-400' },
-    { name: 'Processing Time', value: `${stats?.avgProcessingTime || 0}s`, icon: Clock, color: 'text-purple-400' },
-    { name: 'Insights Generated', value: stats?.totalInsights.toString() || '0', icon: BarChart3, color: 'text-teal-400' },
+    {
+      name: 'Total Simulations',
+      value: stats?.totalSimulations.toString() || '0',
+      icon: Brain,
+      color: 'text-blue-400',
+    },
+    {
+      name: 'Avg. Confidence',
+      value: `${stats?.avgConfidence || 0}%`,
+      icon: TrendingUp,
+      color: 'text-green-400',
+    },
+    {
+      name: 'Processing Time',
+      value: `${stats?.avgProcessingTime || 0}s`,
+      icon: Clock,
+      color: 'text-purple-400',
+    },
+    {
+      name: 'Insights Generated',
+      value: stats?.totalInsights.toString() || '0',
+      icon: BarChart3,
+      color: 'text-teal-400',
+    },
   ];
 
   const categoryColors = {
@@ -96,7 +117,7 @@ export default function Dashboard() {
           </h1>
           <p className="text-gray-300">Track your alternate life explorations</p>
         </div>
-        
+
         <Link
           to="/simulate"
           className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:scale-105 flex items-center space-x-2"
@@ -108,8 +129,11 @@ export default function Dashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-        {statsData.map((stat) => (
-          <div key={stat.name} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
+        {statsData.map(stat => (
+          <div
+            key={stat.name}
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
+          >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-400 text-sm">{stat.name}</p>
@@ -124,12 +148,14 @@ export default function Dashboard() {
       {/* Recent Simulations */}
       <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
         <h2 className="text-2xl font-bold text-white mb-6">Recent Simulations</h2>
-        
+
         {!stats?.recentSimulations || stats.recentSimulations.length === 0 ? (
           <div className="text-center py-12">
             <Brain className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">No simulations yet</h3>
-            <p className="text-gray-300 mb-6">Start your first simulation to explore alternate life paths</p>
+            <p className="text-gray-300 mb-6">
+              Start your first simulation to explore alternate life paths
+            </p>
             <Link
               to="/simulate"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
@@ -139,7 +165,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="space-y-4">
-            {stats.recentSimulations.map((simulation) => (
+            {stats.recentSimulations.map(simulation => (
               <div
                 key={simulation.id}
                 className="bg-white/5 rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer"
@@ -148,17 +174,23 @@ export default function Dashboard() {
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-white mb-2">{simulation.title}</h3>
                     <div className="flex items-center space-x-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColors[simulation.category as keyof typeof categoryColors]}`}>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColors[simulation.category as keyof typeof categoryColors]}`}
+                      >
                         {simulation.category}
                       </span>
                       <span className="text-gray-400 text-sm">
                         {new Date(simulation.createdAt).toLocaleDateString()}
                       </span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        simulation.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                        simulation.status === 'processing' ? 'bg-yellow-500/20 text-yellow-400' :
-                        'bg-red-500/20 text-red-400'
-                      }`}>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          simulation.status === 'completed'
+                            ? 'bg-green-500/20 text-green-400'
+                            : simulation.status === 'processing'
+                              ? 'bg-yellow-500/20 text-yellow-400'
+                              : 'bg-red-500/20 text-red-400'
+                        }`}
+                      >
                         {simulation.status}
                       </span>
                     </div>

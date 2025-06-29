@@ -4,7 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "AI-powered life simulation platform for exploring alternate life paths",
-  "keywords": ["ai", "life-simulation", "decision-analysis", "alternate-timeline"],
+  "keywords": [
+    "ai",
+    "life-simulation",
+    "decision-analysis",
+    "alternate-timeline"
+  ],
   "author": "Paths Not Taken, Inc.",
   "license": "PROPRIETARY",
   "scripts": {

@@ -22,7 +22,9 @@ export interface GeneratedMedia {
 export const mediaApi = {
   // Generate new media
   async generateMedia(request: MediaGenerationRequest): Promise<GeneratedMedia> {
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session) throw new Error('Not authenticated');
 
     const response = await fetch(
@@ -30,7 +32,7 @@ export const mediaApi = {
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${session.access_token}`,
+          Authorization: `Bearer ${session.access_token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -63,7 +65,9 @@ export const mediaApi = {
 
   // Get media for a simulation
   async getSimulationMedia(simulationId: string): Promise<GeneratedMedia[]> {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
@@ -88,7 +92,9 @@ export const mediaApi = {
 
   // Get media for a specific event
   async getEventMedia(eventId: string): Promise<GeneratedMedia[]> {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { data, error } = await supabase
@@ -113,7 +119,9 @@ export const mediaApi = {
 
   // Delete media
   async deleteMedia(mediaId: string): Promise<void> {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) throw new Error('Not authenticated');
 
     const { error } = await supabase
@@ -132,45 +140,52 @@ export const mediaApi = {
         `Person working in ${event.category} environment, professional setting`,
         `Career milestone celebration, office or workplace scene`,
         `Professional networking event, business meeting atmosphere`,
-        `Achievement moment in ${event.category} field, success visualization`
+        `Achievement moment in ${event.category} field, success visualization`,
       ],
       education: [
         `Student in educational setting, learning environment`,
         `Graduation ceremony, academic achievement moment`,
         `Study session, library or classroom scene`,
-        `Educational milestone, knowledge acquisition visualization`
+        `Educational milestone, knowledge acquisition visualization`,
       ],
       relationship: [
         `Meaningful relationship moment, emotional connection`,
         `Social gathering, friends and family interaction`,
         `Romantic scene, intimate and warm atmosphere`,
-        `Community event, social bonding visualization`
+        `Community event, social bonding visualization`,
       ],
       location: [
         `New city or location, exploration and discovery`,
         `Moving day, transition and change visualization`,
         `Local landmark or characteristic scene`,
-        `Neighborhood life, community and belonging`
+        `Neighborhood life, community and belonging`,
       ],
       health: [
         `Wellness and fitness activity, healthy lifestyle`,
         `Medical or health-related milestone`,
         `Outdoor activity, nature and vitality`,
-        `Self-care moment, mental and physical wellbeing`
+        `Self-care moment, mental and physical wellbeing`,
       ],
       finance: [
         `Financial milestone celebration, success moment`,
         `Investment or business opportunity visualization`,
         `Economic stability, security and prosperity`,
-        `Financial planning, future-focused scene`
-      ]
+        `Financial planning, future-focused scene`,
+      ],
     };
 
-    const categoryPrompts = basePrompts[event.category as keyof typeof basePrompts] || basePrompts.career;
-    
-    return categoryPrompts.map(prompt => 
-      `${prompt}, ${event.impact === 'positive' ? 'happy and successful' : 
-        event.impact === 'negative' ? 'challenging but resilient' : 'contemplative and thoughtful'} mood`
+    const categoryPrompts =
+      basePrompts[event.category as keyof typeof basePrompts] || basePrompts.career;
+
+    return categoryPrompts.map(
+      prompt =>
+        `${prompt}, ${
+          event.impact === 'positive'
+            ? 'happy and successful'
+            : event.impact === 'negative'
+              ? 'challenging but resilient'
+              : 'contemplative and thoughtful'
+        } mood`
     );
-  }
+  },
 };

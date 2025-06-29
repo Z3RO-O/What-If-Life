@@ -7,13 +7,15 @@ export function useAuth() {
 
   useEffect(() => {
     // Get initial user
-    authService.getCurrentUser().then((user) => {
+    authService.getCurrentUser().then(user => {
       setUser(user);
       setLoading(false);
     });
 
     // Listen for auth changes
-    const { data: { subscription } } = authService.onAuthStateChange((user) => {
+    const {
+      data: { subscription },
+    } = authService.onAuthStateChange(user => {
       setUser(user);
       setLoading(false);
     });

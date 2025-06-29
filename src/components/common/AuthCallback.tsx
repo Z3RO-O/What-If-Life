@@ -17,7 +17,7 @@ export default function AuthCallback() {
       await authService.handleAuthCallback();
       setStatus('success');
       setMessage('Authentication successful! Redirecting...');
-      
+
       // Redirect to dashboard after successful auth
       setTimeout(() => {
         navigate('/dashboard');
@@ -26,7 +26,7 @@ export default function AuthCallback() {
       console.error('Auth callback error:', error);
       setStatus('error');
       setMessage(error.message || 'Authentication failed. Please try again.');
-      
+
       // Redirect to home page after error
       setTimeout(() => {
         navigate('/');
@@ -44,7 +44,7 @@ export default function AuthCallback() {
             <p className="text-gray-300">{message}</p>
           </>
         )}
-        
+
         {status === 'success' && (
           <>
             <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-4" />
@@ -52,7 +52,7 @@ export default function AuthCallback() {
             <p className="text-gray-300">{message}</p>
           </>
         )}
-        
+
         {status === 'error' && (
           <>
             <AlertCircle className="h-16 w-16 text-red-400 mx-auto mb-4" />

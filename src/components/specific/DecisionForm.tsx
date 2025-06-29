@@ -25,7 +25,7 @@ export default function DecisionForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!isAuthenticated) {
       // Redirect to home with auth modal
       navigate('/?auth=signup');
@@ -49,7 +49,7 @@ export default function DecisionForm() {
 
       // Process simulation
       const simulation = await api.processSimulation(decision.id);
-      
+
       // Navigate to results
       navigate(`/simulation/${simulation.simulation_id}`);
     } catch (error) {
@@ -64,9 +64,7 @@ export default function DecisionForm() {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Sign In Required
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Sign In Required</h1>
           <p className="text-xl text-gray-300 mb-8">
             Please sign in to create and track your life simulations.
           </p>
@@ -91,38 +89,40 @@ export default function DecisionForm() {
           </span>
         </h1>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Tell us about a significant choice you made, and we'll simulate how your life might have unfolded if you had chosen differently.
+          Tell us about a significant choice you made, and we'll simulate how your life might have
+          unfolded if you had chosen differently.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10"
+      >
         <div className="space-y-8">
           {/* Decision Title */}
           <div>
-            <label className="block text-lg font-medium text-white mb-3">
-              Decision Title
-            </label>
+            <label className="block text-lg font-medium text-white mb-3">Decision Title</label>
             <input
               type="text"
               required
               placeholder="e.g., Choosing my college major"
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={formData.title || ''}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              onChange={e => setFormData({ ...formData, title: e.target.value })}
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-lg font-medium text-white mb-3">
-              Category
-            </label>
+            <label className="block text-lg font-medium text-white mb-3">Category</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {categories.map((category) => (
+              {categories.map(category => (
                 <button
                   key={category.value}
                   type="button"
-                  onClick={() => setFormData({ ...formData, category: category.value as Decision['category'] })}
+                  onClick={() =>
+                    setFormData({ ...formData, category: category.value as Decision['category'] })
+                  }
                   className={`p-4 rounded-xl border transition-all duration-200 ${
                     formData.category === category.value
                       ? 'bg-blue-600 border-blue-500 text-white'
@@ -139,30 +139,26 @@ export default function DecisionForm() {
           {/* Paths */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-lg font-medium text-white mb-3">
-                Path You Chose
-              </label>
+              <label className="block text-lg font-medium text-white mb-3">Path You Chose</label>
               <textarea
                 required
                 placeholder="Describe the choice you actually made..."
                 rows={4}
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                 value={formData.chosenPath || ''}
-                onChange={(e) => setFormData({ ...formData, chosenPath: e.target.value })}
+                onChange={e => setFormData({ ...formData, chosenPath: e.target.value })}
               />
             </div>
-            
+
             <div>
-              <label className="block text-lg font-medium text-white mb-3">
-                Alternative Path
-              </label>
+              <label className="block text-lg font-medium text-white mb-3">Alternative Path</label>
               <textarea
                 required
                 placeholder="Describe the choice you didn't make..."
                 rows={4}
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                 value={formData.alternativePath || ''}
-                onChange={(e) => setFormData({ ...formData, alternativePath: e.target.value })}
+                onChange={e => setFormData({ ...formData, alternativePath: e.target.value })}
               />
             </div>
           </div>
@@ -180,7 +176,7 @@ export default function DecisionForm() {
                 placeholder="e.g., 2018, Age 22, 5 years ago"
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={formData.timeframe || ''}
-                onChange={(e) => setFormData({ ...formData, timeframe: e.target.value })}
+                onChange={e => setFormData({ ...formData, timeframe: e.target.value })}
               />
             </div>
 
@@ -190,11 +186,13 @@ export default function DecisionForm() {
                 Importance Level
               </label>
               <div className="flex space-x-2">
-                {[1, 2, 3, 4, 5].map((level) => (
+                {[1, 2, 3, 4, 5].map(level => (
                   <button
                     key={level}
                     type="button"
-                    onClick={() => setFormData({ ...formData, importance: level as Decision['importance'] })}
+                    onClick={() =>
+                      setFormData({ ...formData, importance: level as Decision['importance'] })
+                    }
                     className={`w-12 h-12 rounded-full transition-all duration-200 ${
                       formData.importance === level
                         ? 'bg-yellow-500 text-black'
@@ -210,15 +208,13 @@ export default function DecisionForm() {
 
           {/* Context */}
           <div>
-            <label className="block text-lg font-medium text-white mb-3">
-              Additional Context
-            </label>
+            <label className="block text-lg font-medium text-white mb-3">Additional Context</label>
             <textarea
               placeholder="Provide any additional context that might help us understand your decision..."
               rows={3}
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
               value={formData.context || ''}
-              onChange={(e) => setFormData({ ...formData, context: e.target.value })}
+              onChange={e => setFormData({ ...formData, context: e.target.value })}
             />
           </div>
 

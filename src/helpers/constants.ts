@@ -213,6 +213,6 @@ export const MEDIA_STYLES = [
 ] as const;
 
 // Export types for TypeScript
-export type DecisionCategory = typeof DECISION_CATEGORIES[number]['value'];
-export type MediaStyle = typeof MEDIA_STYLES[number]['value'];
+export type DecisionCategory = (typeof DECISION_CATEGORIES)[number]['value'];
+export type MediaStyle = (typeof MEDIA_STYLES)[number]['value'];
 export type SubscriptionTier = keyof typeof APP_CONSTANTS.TIERS;

@@ -1,14 +1,5 @@
 import React from 'react';
-import { 
-  Construction, 
-  Clock, 
-  ArrowLeft, 
-  Wrench, 
-  Code, 
-  Sparkles,
-  Brain,
-  Zap
-} from 'lucide-react';
+import { Construction, Clock, ArrowLeft, Wrench, Code, Sparkles, Brain, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -21,12 +12,12 @@ interface UnderDevelopmentProps {
   showBackButton?: boolean;
 }
 
-export default function UnderDevelopment({ 
+export default function UnderDevelopment({
   type = 'page',
   name = 'This section',
   description,
   estimatedCompletion = 'Soon',
-  showBackButton = true
+  showBackButton = true,
 }: UnderDevelopmentProps) {
   const navigate = useNavigate();
 
@@ -70,7 +61,10 @@ export default function UnderDevelopment({
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-amber-400/10 to-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto text-center">
@@ -86,14 +80,16 @@ export default function UnderDevelopment({
                 </div>
               </div>
             </div>
-            
+
             <CardTitle className="text-3xl font-heading text-white mb-2">
               {getTitle()} Under Development
             </CardTitle>
-            
+
             <div className="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-500/30 rounded-full px-4 py-2">
               <Clock className="h-4 w-4 text-amber-400" />
-              <span className="text-amber-400 font-medium text-sm font-mono">Coming {estimatedCompletion}</span>
+              <span className="text-amber-400 font-medium text-sm font-mono">
+                Coming {estimatedCompletion}
+              </span>
             </div>
           </CardHeader>
 
@@ -166,9 +162,7 @@ export default function UnderDevelopment({
 
             {/* Newsletter signup */}
             <div className="border-t border-white/10 pt-6">
-              <p className="text-gray-400 text-sm mb-4">
-                Want to be notified when this is ready?
-              </p>
+              <p className="text-gray-400 text-sm mb-4">Want to be notified when this is ready?</p>
               <div className="flex gap-2 max-w-sm mx-auto">
                 <input
                   type="email"

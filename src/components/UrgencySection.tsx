@@ -7,7 +7,7 @@ export default function UrgencySection() {
   const [timeLeft, setTimeLeft] = useState({
     hours: 23,
     minutes: 45,
-    seconds: 30
+    seconds: 30,
   });
 
   useEffect(() => {
@@ -32,16 +32,19 @@ export default function UrgencySection() {
       <div className="container-responsive text-center">
         <div className="inline-flex items-center space-x-2 accent-card rounded-full px-6 py-3 mb-8 lg:mb-12">
           <Zap className="h-5 w-5 text-orange-400" />
-          <span className="text-orange-400 font-accent text-sm lg:text-base">LIMITED TIME OFFER</span>
+          <span className="text-orange-400 font-accent text-sm lg:text-base">
+            LIMITED TIME OFFER
+          </span>
         </div>
 
         <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading text-white mb-6 lg:mb-8">
-          <span className="font-accent text-orange-400">⚡ FLASH SALE:</span> 
+          <span className="font-accent text-orange-400">⚡ FLASH SALE:</span>
           <span className="block accent-gradient mt-2">70% Off Premium Plans</span>
         </h2>
-        
+
         <p className="text-lg lg:text-xl xl:text-2xl text-gray-300 mb-8 lg:mb-12 content-center">
-          Don't let another day pass wondering "what if?" Join thousands who've already transformed their lives.
+          Don't let another day pass wondering "what if?" Join thousands who've already transformed
+          their lives.
         </p>
 
         {/* Countdown Timer */}
@@ -49,7 +52,9 @@ export default function UrgencySection() {
           <CardContent className="p-6 lg:p-8">
             <div className="flex items-center justify-center space-x-2 mb-6">
               <Clock className="h-5 w-5 text-orange-400" />
-              <span className="text-orange-400 font-accent text-sm lg:text-base">OFFER EXPIRES IN:</span>
+              <span className="text-orange-400 font-accent text-sm lg:text-base">
+                OFFER EXPIRES IN:
+              </span>
             </div>
             <div className="flex justify-center space-x-4 lg:space-x-6">
               <div className="text-center">
@@ -62,13 +67,17 @@ export default function UrgencySection() {
                 <div className="text-xl lg:text-2xl xl:text-3xl font-accent text-white pro-card rounded-lg px-3 py-2 lg:px-4 lg:py-3">
                   {timeLeft.minutes.toString().padStart(2, '0')}
                 </div>
-                <div className="text-xs lg:text-sm text-gray-400 mt-1 font-accent-light">MINUTES</div>
+                <div className="text-xs lg:text-sm text-gray-400 mt-1 font-accent-light">
+                  MINUTES
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-xl lg:text-2xl xl:text-3xl font-accent text-white pro-card rounded-lg px-3 py-2 lg:px-4 lg:py-3">
                   {timeLeft.seconds.toString().padStart(2, '0')}
                 </div>
-                <div className="text-xs lg:text-sm text-gray-400 mt-1 font-accent-light">SECONDS</div>
+                <div className="text-xs lg:text-sm text-gray-400 mt-1 font-accent-light">
+                  SECONDS
+                </div>
               </div>
             </div>
           </CardContent>
@@ -77,12 +86,16 @@ export default function UrgencySection() {
         {/* Pricing comparison */}
         <div className="flex justify-center items-center space-x-4 lg:space-x-6 mb-8 lg:mb-12">
           <div className="text-center">
-            <div className="text-gray-400 line-through text-lg lg:text-xl font-accent-light">$24.99/MONTH</div>
+            <div className="text-gray-400 line-through text-lg lg:text-xl font-accent-light">
+              $24.99/MONTH
+            </div>
             <div className="text-xs lg:text-sm text-gray-500 font-accent-light">REGULAR PRICE</div>
           </div>
           <ArrowRight className="h-6 w-6 lg:h-8 lg:w-8 text-orange-400" />
           <div className="text-center">
-            <div className="text-2xl lg:text-3xl xl:text-4xl font-accent text-orange-400">$7.49/MONTH</div>
+            <div className="text-2xl lg:text-3xl xl:text-4xl font-accent text-orange-400">
+              $7.49/MONTH
+            </div>
             <div className="text-xs lg:text-sm text-emerald-400 font-accent-light">70% OFF</div>
           </div>
         </div>

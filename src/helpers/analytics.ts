@@ -37,55 +37,83 @@ class AnalyticsService {
 
   // Track page views
   trackPageView(page: string, userId?: string) {
-    this.track('page_view', {
-      page,
-      title: document.title,
-      referrer: document.referrer,
-    }, userId);
+    this.track(
+      'page_view',
+      {
+        page,
+        title: document.title,
+        referrer: document.referrer,
+      },
+      userId
+    );
   }
 
   // Track simulation events
   trackSimulationStart(decisionCategory: string, userId?: string) {
-    this.track('simulation_started', {
-      category: decisionCategory,
-    }, userId);
+    this.track(
+      'simulation_started',
+      {
+        category: decisionCategory,
+      },
+      userId
+    );
   }
 
   trackSimulationComplete(simulationId: string, confidence: number, userId?: string) {
-    this.track('simulation_completed', {
-      simulationId,
-      confidence,
-    }, userId);
+    this.track(
+      'simulation_completed',
+      {
+        simulationId,
+        confidence,
+      },
+      userId
+    );
   }
 
   trackMediaGeneration(type: 'image' | 'video', style: string, userId?: string) {
-    this.track('media_generated', {
-      type,
-      style,
-    }, userId);
+    this.track(
+      'media_generated',
+      {
+        type,
+        style,
+      },
+      userId
+    );
   }
 
   // Track user engagement
   trackFeatureUsage(feature: string, userId?: string) {
-    this.track('feature_used', {
-      feature,
-    }, userId);
+    this.track(
+      'feature_used',
+      {
+        feature,
+      },
+      userId
+    );
   }
 
   trackError(error: string, context?: string, userId?: string) {
-    this.track('error_occurred', {
-      error,
-      context,
-      stack: new Error().stack,
-    }, userId);
+    this.track(
+      'error_occurred',
+      {
+        error,
+        context,
+        stack: new Error().stack,
+      },
+      userId
+    );
   }
 
   // Performance tracking
   trackPerformance(metric: string, value: number, userId?: string) {
-    this.track('performance_metric', {
-      metric,
-      value,
-    }, userId);
+    this.track(
+      'performance_metric',
+      {
+        metric,
+        value,
+      },
+      userId
+    );
   }
 
   // Send event to analytics service

@@ -37,7 +37,7 @@ async function withRetry<T>(
       return await operation();
     } catch (error) {
       lastError = error as Error;
-      
+
       // Don't retry on authentication errors or client errors
       if (error instanceof APIError && error.status && error.status < 500) {
         throw error;
@@ -67,22 +67,21 @@ export class APIClient {
   }
 
   private async getAuthHeaders(): Promise<Record<string, string>> {
-    const { data: { session } } = await supabase.auth.getSession();
-    
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
     if (!session?.access_token) {
       throw new APIError('Authentication required', 401, 'AUTH_REQUIRED');
     }
 
     return {
       ...this.defaultHeaders,
-      'Authorization': `Bearer ${session.access_token}`,
+      Authorization: `Bearer ${session.access_token}`,
     };
   }
 
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseURL}/functions/v1/${endpoint}`;
     const headers = await this.getAuthHeaders();
 
@@ -108,7 +107,7 @@ export class APIClient {
 
   // Decision API
   async createDecision(decision: any): Promise<any> {
-    return withRetry(() => 
+    return withRetry(() =>
       this.request('create-decision', {
         method: 'POST',
         body: JSON.stringify(decision),
