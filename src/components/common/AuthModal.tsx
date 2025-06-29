@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Mail, Lock, User, Chrome, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
-import { useAuth } from '@/hooks/useAuth';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useAuth } from '@/hooks/useAuth';
+import { AlertCircle, ArrowLeft, CheckCircle, Chrome, Lock, Mail, User } from 'lucide-react';
+import React, { useState } from 'react';
 
 interface AuthModalProps {
   isOpen: boolean;

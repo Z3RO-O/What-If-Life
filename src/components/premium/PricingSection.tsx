@@ -1,7 +1,6 @@
-import React from 'react';
-import { Check, Crown, Zap, Star, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Check, Crown, Sparkles, Star } from 'lucide-react';
 
 export default function PricingSection() {
   const plans = [

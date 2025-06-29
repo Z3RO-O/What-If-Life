@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Brain, Clock, TrendingUp, ArrowLeft, Download, Loader, Wand2 } from 'lucide-react';
+import MediaGenerator from '@/components/premium/MediaGenerator';
 import { useAuth } from '@/hooks/useAuth';
 import { api } from '@/lib/api';
 import { mediaApi, type GeneratedMedia } from '@/lib/mediaApi';
-import MediaGenerator from '@/components/premium/MediaGenerator';
+import { ArrowLeft, Brain, Clock, Download, Loader, TrendingUp, Wand2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface LifeEvent {
   id: string;

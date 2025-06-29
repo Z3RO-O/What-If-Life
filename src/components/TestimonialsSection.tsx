@@ -1,6 +1,5 @@
-import React from 'react';
-import { Star, Quote, Crown, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Crown, Quote, Star, TrendingUp } from 'lucide-react';
 
 export default function TestimonialsSection() {
   const testimonials = [

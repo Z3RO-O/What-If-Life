@@ -1,21 +1,20 @@
-import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import {
-  TrendingUp,
-  Users,
-  Shield,
-  Sparkles,
   BarChart3,
-  Target,
+  Brain,
   Calendar,
   Heart,
-  Zap,
-  Star,
   Lock,
   Rocket,
-  Brain,
+  Shield,
+  Sparkles,
+  Star,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 export default function Features() {
   const freemiumFeatures = [

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Decision } from '@/types';
-import { ArrowRight, Calendar, Star, MapPin, Loader } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { api } from '@/lib/api';
+import { Decision } from '@/types';
+import { ArrowRight, Calendar, Loader, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function DecisionForm() {
   const navigate = useNavigate();

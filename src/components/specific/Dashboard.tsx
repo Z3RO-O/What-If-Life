@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, Brain, Clock, TrendingUp, BarChart3, Loader } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { api } from '@/lib/api';
+import { BarChart3, Brain, Clock, Loader, Plus, TrendingUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface UserStats {
   totalSimulations: number;

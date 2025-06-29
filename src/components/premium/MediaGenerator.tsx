@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Image, Video, Wand2, Download, Trash2, Loader, Sparkles } from 'lucide-react';
-import { mediaApi, type MediaGenerationRequest, type GeneratedMedia } from '@/lib/mediaApi';
+import { useState } from 'react';
+import { mediaApi, type GeneratedMedia, type MediaGenerationRequest } from '@/lib/mediaApi';
+import { Download, Image, Loader, Sparkles, Trash2, Video, Wand2 } from 'lucide-react';
 
 interface MediaGeneratorProps {
   simulationId: string;

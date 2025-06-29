@@ -1,12 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthCallback from '@/components/common/AuthCallback';
 import Layout from '@/components/layout/Layout';
-import HomePage from '@/pages/HomePage';
+import PricingSection from '@/components/premium/PricingSection';
 import Dashboard from '@/components/specific/Dashboard';
 import DecisionForm from '@/components/specific/DecisionForm';
 import SimulationResults from '@/components/specific/SimulationResults';
-import AuthCallback from '@/components/common/AuthCallback';
-import PricingSection from '@/components/premium/PricingSection';
+import HomePage from '@/pages/HomePage';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 function App() {
   return (

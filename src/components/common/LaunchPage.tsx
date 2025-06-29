@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Brain,
-  Mail,
-  Twitter,
-  Linkedin,
-  Clock,
-  Star,
-  Sparkles,
-  ArrowRight,
-  CheckCircle,
-  Zap,
-  Play,
-} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { APP_CONFIG } from '@/config/appConfig';
+import {
+  ArrowRight,
+  Brain,
+  CheckCircle,
+  Clock,
+  Linkedin,
+  Mail,
+  Play,
+  Sparkles,
+  Twitter,
+  Zap,
+} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 export default function LaunchPage() {
   const [email, setEmail] = useState('');

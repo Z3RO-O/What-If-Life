@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase';
-import type { Decision, Simulation } from '@/types';
+import type { Decision } from '@/types';
 
 export const api = {
   // Decision management

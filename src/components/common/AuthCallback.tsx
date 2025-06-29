@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Loader, CheckCircle, AlertCircle } from 'lucide-react';
 import { authService } from '@/lib/auth';
+import { AlertCircle, CheckCircle, Loader } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthCallback() {
   const navigate = useNavigate();

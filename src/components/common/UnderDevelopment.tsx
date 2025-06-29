@@ -1,7 +1,6 @@
-import React from 'react';
-import { Construction, Clock, ArrowLeft, Wrench, Code, Sparkles, Brain, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowLeft, Brain, Clock, Code, Construction, Sparkles, Wrench, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface UnderDevelopmentProps {

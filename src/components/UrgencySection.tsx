@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Clock, Zap, Crown, ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight, Clock, Crown, Star, Zap } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function UrgencySection() {
   const [timeLeft, setTimeLeft] = useState({
