@@ -83,8 +83,9 @@ export default function PricingSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
+          {plans.map(plan => (
             <Card
+              id={plan.name}
               key={plan.name}
               className={`relative ${plan.cardClass} ${
                 plan.popular ? 'scale-105 shadow-2xl white-glow' : 'hover:scale-105'
